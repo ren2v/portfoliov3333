@@ -3,11 +3,15 @@ name: Deploy React Vite to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main  # cada vez que hagas push a main se despliega
+
+permissions:
+  contents: write  # permite al bot crear commits en gh-pages
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -20,11 +24,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build
+      - name: Build project
         run: npm run build
 
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          publish_branch: gh-pages  # rama donde se publicará
+

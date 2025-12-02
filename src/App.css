@@ -1,0 +1,50 @@
+body {
+  background-color: #111;
+  color: white;
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+.navbar {
+  background-color: #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* 🔹 hace que los botones ocupen toda la altura */
+  height: 60px;
+}
+
+.nav-buttons {
+  display: flex;
+  flex: 1; /* 🔹 hace que se expandan a todo el ancho */
+}
+
+button {
+  flex: 1; /* 🔹 cada botón ocupa el mismo espacio dentro del navbar */
+  background-color: #222;
+  border: none;
+  color: #aaa;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+button:hover {
+  background-color: #e53935; /* rojo más intenso */
+  color: white;
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60px);
+}
+
+.main-content img {
+  width: 600px; /* tamaño más grande */
+  max-width: 80%;
+  border-radius: 0;
+}

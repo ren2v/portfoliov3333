@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
+  const [projectCategory, setProjectCategory] = useState(null);
   const [santiagoTime, setSantiagoTime] = useState("");
 
   // Traer la hora de Santiago usando la API y actualizar cada segundo
@@ -48,7 +49,7 @@ export default function App() {
         </h2>
         <img
           src="https://64.media.tumblr.com/4fa3ddf35c097c5153474f2cd7ea90f3/f97dcb2c4356f29f-e1/s640x960/3f47738b2af5c2f116e8fd002f378a5d2d4f5b9c.jpg"
-          alt="Renato Herrera"
+          alt="Renato Herrera Urcullu."
           className="w-72 sm:w-96 shadow-lg"
         />
         <p className="text-gray-600 mt-4 text-sm sm:text-base">
@@ -70,16 +71,39 @@ export default function App() {
         </p>
         <h3 className="text-xl font-semibold mb-2">Education</h3>
         <p className="text-gray-700">Software Engineering at UNAB, Chile.</p>
+        <p className="text-gray-700">Semester abroad at University of Basque Country, Spain.</p>
       </div>
     ),
-    projects: (
+    projects: projectCategory === null ? (
+      <div className="flex flex-col items-center justify-center h-full space-y-2">
+        <div
+          onClick={() => setProjectCategory("software")}
+          className="text-gray-700 hover:text-red-700 cursor-pointer transition-colors duration-300 text-sm sm:text-base"
+        >
+          Software
+        </div>
+        <div
+          onClick={() => setProjectCategory("hardware")}
+          className="text-gray-700 hover:text-red-700 cursor-pointer transition-colors duration-300 text-sm sm:text-base"
+        >
+          Hardware
+        </div>
+      </div>
+    ) : projectCategory === "software" ? (
       <div>
-        <h3 className="text-xl font-semibold mb-2">Projects</h3>
+        <h3 className="text-xl font-semibold mb-2 text-black">Software Projects</h3>
         <p className="text-gray-700">
           Flags for RYM on Chrome Web Store.
         </p>
         <p className="text-gray-700">
           TectonicMap app.
+        </p>
+      </div>
+    ) : (
+      <div>
+        <h3 className="text-xl font-semibold mb-2">Hardware Projects</h3>
+        <p className="text-gray-700">
+          Coming soon...
         </p>
       </div>
     ),
@@ -98,18 +122,23 @@ export default function App() {
       {/* Barra lateral */}
       <div className="flex flex-col items-start p-6 sm:p-10 sm:w-52 bg-gray-50">
         <h1 className="text-base sm:text-lg font-bold tracking-tight text-gray-900 mb-4">
-          Renato Herrera
+          Renato Herrera U.
         </h1>
         <div className="flex flex-col space-y-0">
           {["home", "about", "projects", "contact"].map((text) => (
             <button
               key={text}
-              onClick={() => setActiveSection(text)}
+              onClick={() => {
+                setActiveSection(text);
+                if (text !== "projects") {
+                  setProjectCategory(null);
+                }
+              }}
               className={`w-24 sm:w-28 h-7 sm:h-8 text-xs sm:text-sm font-semibold rounded-none
                 ${
                   activeSection === text
                     ? "bg-red-700 text-white"
-                    : "bg-white text-gray-900 hover:bg-red-700 transition-colors duration-300"
+                    : "bg-white text-gray-900 hover:bg-red-700"
                 }`}
             >
               {text}
@@ -119,7 +148,7 @@ export default function App() {
       </div>
 
       {/* Contenido principal */}
-      <div className="flex-1 p-6 sm:p-10 flex items-center justify-center">
+      <div className={`flex-1 p-6 sm:p-10 flex items-center ${activeSection === "projects" && projectCategory === "software" ? "justify-start" : "justify-center"}`}>
         {sections[activeSection]}
       </div>
     </div>

@@ -1,9 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+
+const TAGS = {
+  "chrome-extension": { en: "Chrome Extension", es: "Extensión de Chrome" },
+  web: { en: "Web App", es: "Aplicación Web" },
+  geospatial: { en: "Geospatial", es: "Geoespacial" },
+  "3d": { en: "3D", es: "3D" },
+  social: { en: "Social", es: "Social" },
+};
 
 const PROJECTS = [
   {
     id: "flags-for-rym",
     name: "Flags for RYM",
+    tags: ["chrome-extension"],
     tagline: {
       en: "Chrome extension.",
       es: "Extensión de Chrome.",
@@ -18,6 +27,7 @@ const PROJECTS = [
   {
     id: "georiesgo-chile",
     name: "GeoRiesgo Chile",
+    tags: ["web", "geospatial"],
     tagline: {
       en: "Geospatial risk data for Chile.",
       es: "Datos geoespaciales de riesgo para Chile.",
@@ -32,6 +42,7 @@ const PROJECTS = [
   {
     id: "volcanes-del-sur",
     name: "Volcanes del Sur",
+    tags: ["3d", "geospatial"],
     tagline: {
       en: "3D terrain visualizer.",
       es: "Visualizador de terreno 3D.",
@@ -53,6 +64,7 @@ const PROJECTS = [
   {
     id: "worldpinner",
     name: "WorldPinner",
+    tags: ["web", "social", "geospatial"],
     tagline: {
       en: "Keep a visual record of your travels around the world.",
       es: "Lleva un registro visual de tus viajes por el mundo.",
@@ -163,6 +175,51 @@ function LanguageToggle({ lang, onToggle }) {
   );
 }
 
+function TagPills({ tags, lang }) {
+  return (
+    <div className="flex flex-wrap gap-1.5 mt-1">
+      {tags.map((tag) => (
+        <span
+          key={tag}
+          className="text-[10px] uppercase tracking-wide text-gray-500 bg-gray-100 border border-gray-200 rounded-full px-2 py-0.5"
+        >
+          {TAGS[tag][lang]}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function TagFilter({ activeTag, onSelect, lang }) {
+  return (
+    <div className="flex flex-wrap gap-1.5 mb-4">
+      <button
+        onClick={() => onSelect(null)}
+        className={`text-xs rounded-full px-2.5 py-1 border transition-colors ${
+          activeTag === null
+            ? "bg-red-700 border-red-700 text-white"
+            : "border-gray-300 text-gray-500 hover:border-red-700 hover:text-red-700"
+        }`}
+      >
+        {lang === "en" ? "All" : "Todos"}
+      </button>
+      {Object.entries(TAGS).map(([id, label]) => (
+        <button
+          key={id}
+          onClick={() => onSelect(id)}
+          className={`text-xs rounded-full px-2.5 py-1 border transition-colors ${
+            activeTag === id
+              ? "bg-red-700 border-red-700 text-white"
+              : "border-gray-300 text-gray-500 hover:border-red-700 hover:text-red-700"
+          }`}
+        >
+          {label[lang]}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 function ProjectCard({ project, isOpen, onToggle, lang }) {
   return (
     <div className="border-b border-gray-200 last:border-b-0">
@@ -175,6 +232,7 @@ function ProjectCard({ project, isOpen, onToggle, lang }) {
             {project.name}
           </span>{" "}
           <span className="text-gray-500">— {project.tagline[lang]}</span>
+          <TagPills tags={project.tags} lang={lang} />
         </span>
         <span
           className={`font-mono text-gray-400 text-sm transition-transform duration-200 shrink-0 ml-4 ${
@@ -226,6 +284,15 @@ export default function App() {
   const [santiagoTime, setSantiagoTime] = useState(new Date());
   const [openProject, setOpenProject] = useState(null);
   const [lang, setLang] = useState("en");
+  const [activeTag, setActiveTag] = useState(null);
+
+  const filteredProjects = useMemo(
+    () =>
+      activeTag
+        ? PROJECTS.filter((project) => project.tags.includes(activeTag))
+        : PROJECTS,
+    [activeTag]
+  );
 
   // Reloj local, sin llamadas a APIs externas
   useEffect(() => {
@@ -289,8 +356,9 @@ export default function App() {
             onToggle={() => setLang(lang === "en" ? "es" : "en")}
           />
         </div>
+        <TagFilter activeTag={activeTag} onSelect={setActiveTag} lang={lang} />
         <div>
-          {PROJECTS.map((project) => (
+          {filteredProjects.map((project) => (
             <ProjectCard
               key={project.id}
               project={project}
@@ -301,6 +369,11 @@ export default function App() {
               }
             />
           ))}
+          {filteredProjects.length === 0 && (
+            <p className="text-gray-400 text-sm py-4">
+              {lang === "en" ? "No projects with this tag." : "No hay proyectos con este tag."}
+            </p>
+          )}
         </div>
       </div>
     ),

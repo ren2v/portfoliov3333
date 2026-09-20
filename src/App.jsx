@@ -4,27 +4,42 @@ const PROJECTS = [
   {
     id: "flags-for-rym",
     name: "Flags for RYM",
-    tagline: "Chrome extension.",
-    description:
-      "Adds country flags next to artists on rateyourmusic.com, using MusicBrainz's area hierarchy with a Nominatim fallback.",
+    tagline: {
+      en: "Chrome extension.",
+      es: "Extensión de Chrome.",
+    },
+    description: {
+      en: "Adds country flags next to artists on rateyourmusic.com, using MusicBrainz's area hierarchy with a Nominatim fallback.",
+      es: "Agrega banderas de países junto a los artistas en rateyourmusic.com, usando la jerarquía de áreas de MusicBrainz con Nominatim como respaldo.",
+    },
     url: "https://chromewebstore.google.com/detail/flags-for-rym/ndbikjgmpkllhlcfemillocjgnmnffdg",
     media: { type: "gif", src: "/projects/flags-for-rym.gif" },
   },
   {
     id: "georiesgo-chile",
     name: "GeoRiesgo Chile",
-    tagline: "Geospatial risk data for Chile.",
-    description:
-      "Seismic and geological risk evaluator for Chile, combining fault proximity, seismicity, tsunami inundation, and soil type into a weighted risk model.",
+    tagline: {
+      en: "Geospatial risk data for Chile.",
+      es: "Datos geoespaciales de riesgo para Chile.",
+    },
+    description: {
+      en: "Seismic and geological risk evaluator for Chile, combining fault proximity, seismicity, tsunami inundation, and soil type into a weighted risk model.",
+      es: "Evaluador de riesgo sísmico y geológico para Chile, que combina cercanía a fallas, sismicidad, inundación por tsunami y tipo de suelo en un modelo de riesgo ponderado.",
+    },
     url: "https://georiesgo-chile.vercel.app/",
     media: { type: "gif", src: "/projects/georiesgo-chile.gif" },
   },
   {
     id: "volcanes-del-sur",
     name: "Volcanes del Sur",
-    tagline: "3D terrain visualizer.",
-    description:
-      "3D terrain visualizer of southern Chilean volcanoes (Villarrica, Osorno) built with real DEM and satellite data — Copernicus GLO-30 elevation, ESRI World Imagery textures, and Sentinel-2 NDVI layers rendered in Three.js with orbital camera controls.",
+    tagline: {
+      en: "3D terrain visualizer.",
+      es: "Visualizador de terreno 3D.",
+    },
+    description: {
+      en: "3D terrain visualizer of southern Chilean volcanoes (Villarrica, Osorno) built with real DEM and satellite data — Copernicus GLO-30 elevation, ESRI World Imagery textures, and Sentinel-2 NDVI layers rendered in Three.js with orbital camera controls.",
+      es: "Visualizador 3D del terreno de volcanes del sur de Chile (Villarrica, Osorno) construido con datos DEM y satelitales reales — elevación Copernicus GLO-30, texturas ESRI World Imagery y capas NDVI de Sentinel-2, renderizado en Three.js con controles de cámara orbital.",
+    },
     url: "",
     media: {
       type: "carousel",
@@ -38,9 +53,14 @@ const PROJECTS = [
   {
     id: "worldpinner",
     name: "WorldPinner",
-    tagline: "Lleva un registro visual de tus viajes por el mundo.",
-    description:
-      "App web/red social para trackear tu historial de viajes: marca los países y regiones que visitaste en un mapa/globo interactivo, arma tu wishlist, gana XP y sube de nivel desbloqueando 111 logros, comparate con amigos, sigue el leaderboard global y comparte itinerarios. Incluye un feed social.",
+    tagline: {
+      en: "Keep a visual record of your travels around the world.",
+      es: "Lleva un registro visual de tus viajes por el mundo.",
+    },
+    description: {
+      en: "Web app/social network for tracking your travel history: pin the countries and regions you've visited on an interactive map/globe, build your wishlist, earn XP and level up unlocking 111 achievements, compare yourself with friends, follow the global leaderboard, and share itineraries. Includes a social feed.",
+      es: "App web/red social para trackear tu historial de viajes: marca los países y regiones que visitaste en un mapa/globo interactivo, arma tu wishlist, gana XP y sube de nivel desbloqueando 111 logros, comparate con amigos, sigue el leaderboard global y comparte itinerarios. Incluye un feed social.",
+    },
     url: "https://worldpinner.app",
     media: { type: "gif", src: "/projects/worldpinner.gif" },
   },
@@ -112,7 +132,38 @@ function Carousel({ images, alt }) {
   );
 }
 
-function ProjectCard({ project, isOpen, onToggle }) {
+function LanguageIcon() {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      className="w-3.5 h-3.5"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <text x="0" y="14" fontSize="12" fontFamily="sans-serif" fill="currentColor">
+        あ
+      </text>
+      <text x="11" y="9" fontSize="9" fontFamily="sans-serif" fill="currentColor">
+        A
+      </text>
+    </svg>
+  );
+}
+
+function LanguageToggle({ lang, onToggle }) {
+  return (
+    <button
+      onClick={onToggle}
+      aria-label={lang === "en" ? "Cambiar a español" : "Switch to English"}
+      className="flex items-center gap-1 text-xs text-gray-500 hover:text-red-700 border border-gray-300 hover:border-red-700 rounded px-2 py-1 transition-colors"
+    >
+      <LanguageIcon />
+      {lang === "en" ? "ES" : "EN"}
+    </button>
+  );
+}
+
+function ProjectCard({ project, isOpen, onToggle, lang }) {
   return (
     <div className="border-b border-gray-200 last:border-b-0">
       <button
@@ -123,7 +174,7 @@ function ProjectCard({ project, isOpen, onToggle }) {
           <span className="text-gray-900 font-medium group-hover:text-red-700 transition-colors">
             {project.name}
           </span>{" "}
-          <span className="text-gray-500">— {project.tagline}</span>
+          <span className="text-gray-500">— {project.tagline[lang]}</span>
         </span>
         <span
           className={`font-mono text-gray-400 text-sm transition-transform duration-200 shrink-0 ml-4 ${
@@ -142,7 +193,7 @@ function ProjectCard({ project, isOpen, onToggle }) {
         <div className="overflow-hidden">
           <div className="pb-5 pt-1">
             <p className="text-gray-600 text-sm leading-relaxed mb-3">
-              {project.description}
+              {project.description[lang]}
             </p>
             {project.media.type === "carousel" ? (
               <Carousel images={project.media.images} alt={project.name} />
@@ -160,7 +211,7 @@ function ProjectCard({ project, isOpen, onToggle }) {
                 rel="noopener noreferrer"
                 className="inline-block mt-3 text-sm text-gray-900 hover:text-red-700 underline decoration-gray-300 hover:decoration-red-700 transition-colors"
               >
-                View project →
+                {lang === "en" ? "View project →" : "Ver proyecto →"}
               </a>
             )}
           </div>
@@ -174,6 +225,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState("home");
   const [santiagoTime, setSantiagoTime] = useState(new Date());
   const [openProject, setOpenProject] = useState(null);
+  const [lang, setLang] = useState("en");
 
   // Reloj local, sin llamadas a APIs externas
   useEffect(() => {
@@ -228,12 +280,21 @@ export default function App() {
     ),
     projects: (
       <div>
-        <h3 className="font-display text-lg font-semibold mb-1 text-gray-900">Software Projects</h3>
+        <div className="flex items-center justify-between mb-1">
+          <h3 className="font-display text-lg font-semibold text-gray-900">
+            {lang === "en" ? "Software Projects" : "Proyectos de Software"}
+          </h3>
+          <LanguageToggle
+            lang={lang}
+            onToggle={() => setLang(lang === "en" ? "es" : "en")}
+          />
+        </div>
         <div>
           {PROJECTS.map((project) => (
             <ProjectCard
               key={project.id}
               project={project}
+              lang={lang}
               isOpen={openProject === project.id}
               onToggle={() =>
                 setOpenProject(openProject === project.id ? null : project.id)

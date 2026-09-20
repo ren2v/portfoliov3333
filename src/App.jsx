@@ -62,7 +62,7 @@ const PROJECTS = [
       es: "App web/red social para trackear tu historial de viajes: marca los países y regiones que visitaste en un mapa/globo interactivo, arma tu wishlist, gana XP y sube de nivel desbloqueando 111 logros, comparate con amigos, sigue el leaderboard global y comparte itinerarios. Incluye un feed social.",
     },
     url: "https://worldpinner.app",
-    media: { type: "gif", src: "/projects/worldpinner.gif" },
+    media: { type: "image", src: "/projects/worldpinner.webp" },
   },
 ];
 

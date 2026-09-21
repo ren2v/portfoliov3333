@@ -102,6 +102,8 @@ function Carousel({ images, alt }) {
               key={src}
               src={src}
               alt={`${alt} screenshot ${i + 1}`}
+              loading="lazy"
+              decoding="async"
               className="w-full shrink-0"
             />
           ))}
@@ -221,6 +223,12 @@ function TagFilter({ activeTag, onSelect, lang }) {
 }
 
 function ProjectCard({ project, isOpen, onToggle, lang }) {
+  const [everOpened, setEverOpened] = useState(isOpen);
+
+  useEffect(() => {
+    if (isOpen) setEverOpened(true);
+  }, [isOpen]);
+
   return (
     <div className="border-b border-gray-200 last:border-b-0">
       <button
@@ -253,12 +261,14 @@ function ProjectCard({ project, isOpen, onToggle, lang }) {
             <p className="text-gray-600 text-sm leading-relaxed mb-3">
               {project.description[lang]}
             </p>
-            {project.media.type === "carousel" ? (
+            {!everOpened ? null : project.media.type === "carousel" ? (
               <Carousel images={project.media.images} alt={project.name} />
             ) : (
               <img
                 src={project.media.src}
                 alt={`${project.name} demo`}
+                loading="lazy"
+                decoding="async"
                 className="w-full rounded border border-gray-200"
               />
             )}

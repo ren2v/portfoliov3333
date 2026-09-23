@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         display: ["'Space Grotesk'", "sans-serif"],
+        welcome: ["'Varela Round'", "sans-serif"],
         sans: ["Inter", "sans-serif"],
         mono: ["'JetBrains Mono'", "monospace"],
       },

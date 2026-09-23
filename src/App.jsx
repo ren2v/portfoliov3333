@@ -325,7 +325,7 @@ export default function App() {
   const sections = {
     home: (
       <div className="flex flex-col items-center justify-center h-full">
-        <h2 className="font-display text-xl sm:text-2xl font-semibold text-gray-900 mb-6">
+        <h2 className="font-welcome text-2xl sm:text-3xl text-gray-900 mb-6">
           welcome!
         </h2>
         <img

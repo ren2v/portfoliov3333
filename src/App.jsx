@@ -445,9 +445,7 @@ export default function App() {
     contact: (
       <div>
         <h3 className="font-display text-lg font-semibold mb-3 text-gray-900">Contact</h3>
-        <p className="text-gray-700">
-          renatoherrerapolo@gmail.com / linkedin.com
-        </p>
+        <p className="text-gray-700">renatoherrerapolo@gmail.com</p>
       </div>
     ),
   };

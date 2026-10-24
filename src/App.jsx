@@ -8,6 +8,43 @@ const TAGS = {
   social: { en: "Social", es: "Social" },
 };
 
+const ABOUT = {
+  en: {
+    sectionTitle: "About",
+    intro:
+      "I'm Renato, a Computer Engineering student who likes using technology to make everyday things work better. I'm drawn to backend development, applied AI (agents and automation), distributed systems, geospatial tools, and health tech.",
+    workTitle: "Work",
+    work: "Programming Intern at Think2Process (Sep–Dec 2025). Worked across the stack: built a PHP authentication system and dynamic views for the company intranet, wrote automation scripts to speed up internal processes, generated PDF reports with DOMPDF, set up data scraping with automated email notifications, and developed a Node.js/Express API for data management. Also maintained and updated internal systems.",
+    educationTitle: "Education",
+    education1:
+      "Computer Engineering at Universidad Andrés Bello (UNAB), Santiago, currently in my second-to-last semester.",
+    education2:
+      "Exchange semester at the University of the Basque Country (UPV/EHU), Spain (Spring 2026), with coursework in teamwork & Git, project management with Microsoft Project, Power BI, and Software Engineering.",
+    stackTitle: "Stack",
+    stack1: "Python, JavaScript, Java, PHP, React, Node.js, Django, FastAPI, PostgreSQL, Docker.",
+    stack2: "Microsoft Azure learning paths (no formal certification yet).",
+    languagesTitle: "Languages",
+    languages: "Spanish (native), English (TOEFL B2).",
+  },
+  es: {
+    sectionTitle: "Sobre mí",
+    intro:
+      "Soy Renato, estudiante de Ingeniería en Computación al que le gusta usar la tecnología para mejorar el día a día. Me interesan el desarrollo backend, la IA aplicada (agentes y automatización), los sistemas distribuidos, las herramientas geoespaciales y la tecnología para la salud.",
+    workTitle: "Trabajo",
+    work: "Practicante de Programación en Think2Process (sep–dic 2025). Trabajé en todo el stack: desarrollé un sistema de autenticación en PHP y vistas dinámicas para la intranet de la empresa, escribí scripts de automatización para acelerar procesos internos, generé reportes en PDF con DOMPDF, implementé scraping de datos con notificaciones automáticas por correo, y desarrollé una API en Node.js/Express para gestión de datos. También mantuve y actualicé sistemas internos.",
+    educationTitle: "Educación",
+    education1:
+      "Ingeniería en Computación en la Universidad Andrés Bello (UNAB), Santiago, actualmente en mi penúltimo semestre.",
+    education2:
+      "Intercambio en la Universidad del País Vasco (UPV/EHU), España (primer semestre 2026), con cursos de trabajo en equipo y Git, gestión de proyectos con Microsoft Project, Power BI e Ingeniería del Software.",
+    stackTitle: "Stack",
+    stack1: "Python, JavaScript, Java, PHP, React, Node.js, Django, FastAPI, PostgreSQL, Docker.",
+    stack2: "Rutas de aprendizaje de Microsoft Azure (sin certificación formal aún).",
+    languagesTitle: "Idiomas",
+    languages: "Español (nativo), inglés (TOEFL B2).",
+  },
+};
+
 const PROJECTS = [
   {
     id: "flags-for-rym",
@@ -343,23 +380,34 @@ export default function App() {
     ),
     about: (
       <div>
-        <p className="text-gray-700 mb-4 leading-relaxed">
-          I'm Renato, a Computer Engineering student who likes using technology to make everyday things work better. I'm drawn to backend development, applied AI — agents and automation — distributed systems, geospatial tools, and health tech.
-        </p>
-        <h3 className="font-display text-lg font-semibold mb-2 text-gray-900">Work</h3>
-        <p className="text-gray-700 mb-4 leading-relaxed">
-          Programming Intern at Think2Process (Sep–Dec 2025). Worked across the stack: built a PHP authentication system and dynamic views for the company intranet, wrote automation scripts to speed up internal processes, generated PDF reports with DOMPDF, set up data scraping with automated email notifications, and developed a Node.js/Express API for data management. Also maintained and updated internal systems.
-        </p>
-        <h3 className="font-display text-lg font-semibold mb-2 text-gray-900">Education</h3>
-        <p className="text-gray-700 mb-1">Computer Engineering at Universidad Andrés Bello (UNAB), Santiago — currently in my second-to-last semester.</p>
-        <p className="text-gray-700 mb-4">
-          Exchange semester at the University of the Basque Country (UPV/EHU), Spain (Spring 2026), with coursework in teamwork &amp; Git, project management with Microsoft Project, Power BI, and Software Engineering.
-        </p>
-        <h3 className="font-display text-lg font-semibold mb-2 text-gray-900">Stack</h3>
-        <p className="text-gray-700 mb-1">Python, JavaScript, Java, PHP, React, Node.js, Django, FastAPI, PostgreSQL, Docker.</p>
-        <p className="text-gray-700 mb-4">Microsoft Azure learning paths (no formal certification yet).</p>
-        <h3 className="font-display text-lg font-semibold mb-2 text-gray-900">Languages</h3>
-        <p className="text-gray-700">Spanish (native), English (TOEFL B2).</p>
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="font-display text-lg font-semibold text-gray-900">
+            {ABOUT[lang].sectionTitle}
+          </h3>
+          <LanguageToggle
+            lang={lang}
+            onToggle={() => setLang(lang === "en" ? "es" : "en")}
+          />
+        </div>
+        <p className="text-gray-700 mb-4 leading-relaxed">{ABOUT[lang].intro}</p>
+        <h3 className="font-display text-lg font-semibold mb-2 text-gray-900">
+          {ABOUT[lang].workTitle}
+        </h3>
+        <p className="text-gray-700 mb-4 leading-relaxed">{ABOUT[lang].work}</p>
+        <h3 className="font-display text-lg font-semibold mb-2 text-gray-900">
+          {ABOUT[lang].educationTitle}
+        </h3>
+        <p className="text-gray-700 mb-1">{ABOUT[lang].education1}</p>
+        <p className="text-gray-700 mb-4">{ABOUT[lang].education2}</p>
+        <h3 className="font-display text-lg font-semibold mb-2 text-gray-900">
+          {ABOUT[lang].stackTitle}
+        </h3>
+        <p className="text-gray-700 mb-1">{ABOUT[lang].stack1}</p>
+        <p className="text-gray-700 mb-4">{ABOUT[lang].stack2}</p>
+        <h3 className="font-display text-lg font-semibold mb-2 text-gray-900">
+          {ABOUT[lang].languagesTitle}
+        </h3>
+        <p className="text-gray-700">{ABOUT[lang].languages}</p>
       </div>
     ),
     projects: (

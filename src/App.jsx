@@ -344,15 +344,22 @@ export default function App() {
     about: (
       <div>
         <p className="text-gray-700 mb-4 leading-relaxed">
-          I'm renato, a Software Engineering student. Looking to use technology to develop tools to better life in many aspects.
+          I'm Renato, a Computer Engineering student who likes using technology to make everyday things work better. I'm drawn to backend development, applied AI — agents and automation — distributed systems, geospatial tools, and health tech.
         </p>
         <h3 className="font-display text-lg font-semibold mb-2 text-gray-900">Work</h3>
-        <p className="text-gray-700 mb-4">
-          Internship based mostly on automation.
+        <p className="text-gray-700 mb-4 leading-relaxed">
+          Programming Intern at Think2Process (Sep–Dec 2025). Worked across the stack: built a PHP authentication system and dynamic views for the company intranet, wrote automation scripts to speed up internal processes, generated PDF reports with DOMPDF, set up data scraping with automated email notifications, and developed a Node.js/Express API for data management. Also maintained and updated internal systems.
         </p>
         <h3 className="font-display text-lg font-semibold mb-2 text-gray-900">Education</h3>
-        <p className="text-gray-700">Software Engineering at UNAB, Chile.</p>
-        <p className="text-gray-700">Semester abroad at University of Basque Country, Spain.</p>
+        <p className="text-gray-700 mb-1">Computer Engineering at Universidad Andrés Bello (UNAB), Santiago — currently in my second-to-last semester.</p>
+        <p className="text-gray-700 mb-4">
+          Exchange semester at the University of the Basque Country (UPV/EHU), Spain (Spring 2026), with coursework in teamwork &amp; Git, project management with Microsoft Project, Power BI, and Software Engineering.
+        </p>
+        <h3 className="font-display text-lg font-semibold mb-2 text-gray-900">Stack</h3>
+        <p className="text-gray-700 mb-1">Python, JavaScript, Java, PHP, React, Node.js, Django, FastAPI, PostgreSQL, Docker.</p>
+        <p className="text-gray-700 mb-4">Microsoft Azure learning paths (no formal certification yet).</p>
+        <h3 className="font-display text-lg font-semibold mb-2 text-gray-900">Languages</h3>
+        <p className="text-gray-700">Spanish (native), English (TOEFL B2).</p>
       </div>
     ),
     projects: (

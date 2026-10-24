@@ -329,8 +329,8 @@ export default function App() {
           welcome!
         </h2>
         <img
-          src="https://64.media.tumblr.com/4fa3ddf35c097c5153474f2cd7ea90f3/f97dcb2c4356f29f-e1/s640x960/3f47738b2af5c2f116e8fd002f378a5d2d4f5b9c.jpg"
-          alt="Renato Herrera Urcullu."
+          src="/home.jpg"
+          alt="Vista de las montañas del País Vasco."
           className="w-72 sm:w-96 shadow-lg"
         />
         <p className="text-gray-600 mt-4 text-sm sm:text-base">

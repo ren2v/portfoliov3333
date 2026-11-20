@@ -47,6 +47,8 @@ const ABOUT = {
   },
 };
 
+const NAV_ITEMS = ["home", "about", "projects", "contact"];
+
 const PROJECTS = [
   {
     id: "flags-for-rym",
@@ -447,8 +449,15 @@ export default function App() {
     ),
     contact: (
       <div>
-        <h3 className="font-display text-lg font-semibold mb-3 text-gray-900">Contact</h3>
-        <p className="text-gray-700">renatoherrerapolo@gmail.com</p>
+        <h3 className="font-display text-lg font-semibold mb-3 text-gray-900">
+          {lang === "en" ? "Contact" : "Contacto"}
+        </h3>
+        <a
+          href="mailto:renatoherrerapolo@gmail.com"
+          className="text-gray-700 hover:text-red-700 underline decoration-gray-300 hover:decoration-red-700 transition-colors"
+        >
+          renatoherrerapolo@gmail.com
+        </a>
       </div>
     ),
   };
@@ -463,16 +472,20 @@ export default function App() {
         <p className="font-mono text-[11px] text-gray-400 tracking-wide mt-1 mb-8">
           33.4489°S, 70.6693°W
         </p>
-        <nav className="flex flex-col w-full">
-          {["home", "about", "projects", "contact"].map((text) => (
+        <nav className="relative flex flex-col w-full">
+          <span
+            className="absolute left-0 w-0.5 h-9 bg-red-700 transition-transform duration-300 ease-in-out"
+            style={{ transform: `translateY(${NAV_ITEMS.indexOf(activeSection) * 36}px)` }}
+          />
+          {NAV_ITEMS.map((text) => (
             <button
               key={text}
               onClick={() => setActiveSection(text)}
-              className={`text-left pl-4 py-2 text-sm font-medium tracking-wide border-l-2 transition-colors duration-200
+              className={`flex items-center h-9 pl-4 text-sm font-medium tracking-wide border-l-2 border-transparent transition-colors duration-200
                 ${
                   activeSection === text
-                    ? "border-red-700 text-gray-900"
-                    : "border-transparent text-gray-400 hover:text-gray-900 hover:border-gray-300"
+                    ? "text-gray-900"
+                    : "text-gray-400 hover:text-gray-900 hover:border-gray-300"
                 }`}
             >
               {text}
@@ -483,7 +496,7 @@ export default function App() {
 
       {/* Contenido principal */}
       <div className={`flex-1 p-6 sm:p-12 flex ${activeSection === "home" ? "items-center justify-center" : "items-start justify-start"}`}>
-        <div className="w-full max-w-xl">
+        <div key={activeSection} className="w-full max-w-xl fade-in-section">
           {sections[activeSection]}
         </div>
       </div>

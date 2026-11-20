@@ -49,6 +49,13 @@ const ABOUT = {
 
 const NAV_ITEMS = ["home", "about", "projects", "contact"];
 
+const NAV_LABELS = {
+  home: { en: "home", es: "inicio" },
+  about: { en: "about", es: "sobre mí" },
+  projects: { en: "projects", es: "proyectos" },
+  contact: { en: "contact", es: "contacto" },
+};
+
 const PROJECTS = [
   {
     id: "flags-for-rym",
@@ -488,7 +495,7 @@ export default function App() {
                     : "text-gray-400 hover:text-gray-900 hover:border-gray-300"
                 }`}
             >
-              {text}
+              {NAV_LABELS[text][lang]}
             </button>
           ))}
         </nav>

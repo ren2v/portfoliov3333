@@ -14,7 +14,8 @@ const ABOUT = {
     intro:
       "I'm Renato, a Computer Engineering student who likes using technology to make everyday things work better. I'm drawn to backend development, applied AI (agents and automation), distributed systems, geospatial tools, and health tech.",
     workTitle: "Work",
-    work: "Programming Intern at Think2Process (Sep–Dec 2025). Worked across the stack: built a PHP authentication system and dynamic views for the company intranet, wrote automation scripts to speed up internal processes, generated PDF reports with DOMPDF, set up data scraping with automated email notifications, and developed a Node.js/Express API for data management. Also maintained and updated internal systems.",
+    work: "Programming Intern at Caja Los Andes (Nov 2026–present). Building internal applications with Retool, integrating them with internal APIs to streamline company workflows.",
+    work2: "Programming Intern at Think2Process (Sep–Dec 2025). Worked across the stack: built a PHP authentication system and dynamic views for the company intranet, wrote automation scripts to speed up internal processes, generated PDF reports with DOMPDF, set up data scraping with automated email notifications, and developed a Node.js/Express API for data management. Also maintained and updated internal systems.",
     educationTitle: "Education",
     education1:
       "Computer Engineering at Universidad Andrés Bello (UNAB), Santiago, currently in my second-to-last semester.",
@@ -31,7 +32,8 @@ const ABOUT = {
     intro:
       "Soy Renato, estudiante de Ingeniería en Computación al que le gusta usar la tecnología para mejorar el día a día. Me interesan el desarrollo backend, la IA aplicada (agentes y automatización), los sistemas distribuidos, las herramientas geoespaciales y la tecnología para la salud.",
     workTitle: "Trabajo",
-    work: "Practicante de Programación en Think2Process (sep–dic 2025). Trabajé en todo el stack: desarrollé un sistema de autenticación en PHP y vistas dinámicas para la intranet de la empresa, escribí scripts de automatización para acelerar procesos internos, generé reportes en PDF con DOMPDF, implementé scraping de datos con notificaciones automáticas por correo, y desarrollé una API en Node.js/Express para gestión de datos. También mantuve y actualicé sistemas internos.",
+    work: "Practicante de Programación en Caja Los Andes (nov 2026–presente). Desarrollo aplicaciones internas con Retool, integrándolas con APIs internas para agilizar procesos de la empresa.",
+    work2: "Practicante de Programación en Think2Process (sep–dic 2025). Trabajé en todo el stack: desarrollé un sistema de autenticación en PHP y vistas dinámicas para la intranet de la empresa, escribí scripts de automatización para acelerar procesos internos, generé reportes en PDF con DOMPDF, implementé scraping de datos con notificaciones automáticas por correo, y desarrollé una API en Node.js/Express para gestión de datos. También mantuve y actualicé sistemas internos.",
     educationTitle: "Educación",
     education1:
       "Ingeniería en Computación en la Universidad Andrés Bello (UNAB), Santiago, actualmente en mi penúltimo semestre.",
@@ -393,7 +395,8 @@ export default function App() {
         <h3 className="font-display text-lg font-semibold mb-2 text-gray-900">
           {ABOUT[lang].workTitle}
         </h3>
-        <p className="text-gray-700 mb-4 leading-relaxed">{ABOUT[lang].work}</p>
+        <p className="text-gray-700 mb-3 leading-relaxed">{ABOUT[lang].work}</p>
+        <p className="text-gray-700 mb-4 leading-relaxed">{ABOUT[lang].work2}</p>
         <h3 className="font-display text-lg font-semibold mb-2 text-gray-900">
           {ABOUT[lang].educationTitle}
         </h3>
